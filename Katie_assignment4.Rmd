@@ -1,0 +1,44 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+# Install Packages
+```{r}
+install.packages("tidyverse", dependencies = TRUE)
+install.packages("ggthemes", dependencies = TRUE)
+```
+# Load Packages
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+```
+# Import Data
+```{r}
+assignment4 = read_csv("a4_data.csv")
+```
+# Rows and Columns
+```{r}
+nrow(assignment4)
+ncol(assignment4)
+```
+There are 3700 rows and 12 columns in this data file.
+
+# Unique Participants and Trials
+```{r}
+subject_IDs = assignment4 %>% pull(subject) %>%
+  unique()
+length(subject_IDs)
+
+assignment4 %>% group_by(subject)%>%
+  count()
+```
+There are 37 subjects included in this data file. Each subject completed 100 trials.
+
+# Levels of Variables
+```{r}
+assignment4 %>% pull(prime_condition) %>%
+  levels()
+```
+
+
