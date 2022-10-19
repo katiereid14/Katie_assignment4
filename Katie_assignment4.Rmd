@@ -95,9 +95,25 @@ ggplot(aes(x = prime_condition, y = mean)) +
   theme_clean() +
   xlab("Prime Condition") +
   ylab("Mean Accuracy") +
-  ggtitle("Barplot of Prime Condition")
+  ggtitle("Mean Accuracy by Prime Condition")
   
 ```
 
 # Data Interpretation
 "Semantic" primes lead to faster response times than "phonological," "unrelated," and "both". "Phonological" primes lead to the slowest response times while "both" and "unrelated" led to very similar response times
+
+# EC: Summarizing Accuracy per Prime Condition and State 
+```{r}
+state_prime_acc = assignment4 %>%
+  group_by(state, prime_condition)%>%
+  summarise(mean = mean(accuracy))
+```
+# EC: Bar Plot of Prime Condition and State
+```{r}
+state_prime_acc%>%
+  ggplot(aes(x = prime_condition, y = mean, fill = state)) +
+  geom_col(position = "dodge") +
+  theme_clean()+
+  labs(x = "Prime Condition", y = "Mean Accuracy", title = "Mean Accuracy By Prime Condition and State")
+```
+
