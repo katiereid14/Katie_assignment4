@@ -39,12 +39,13 @@ There are 37 subjects included in this data file. Each subject completed 100 tri
 
 # Levels of Variables
 ```{r}
-assignment4 %>%
-  pull(prime_condition)
+prime_and_state = assignment4 %>%
+  mutate(prime_condition = as.factor(prime_condition), state = as.factor(state))
 
-
-
+levels(prime_and_state %>% pull(prime_condition))
+levels(prime_and_state %>% pull(state))
 ```
+The variable "prime condition" has 4 levels: "both," "phonological," "semantic," and "unrelated." The variable "state" also has 4 levels: " dontknow," "know," "other," and "tipoftongue."
 
 # Subsets of Columns
 ```{r}
